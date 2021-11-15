@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dfdevforge.common.entities.ResourceDataEntity;
+import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteAuthenticationService;
 
@@ -16,10 +17,11 @@ import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteAuthenticati
 public class UserResource {
 	private ResourceDataEntity resourceData = new ResourceDataEntity();
 
-	@Autowired private UserExecuteAuthenticationService userExecuteAuthenticationService;
+	@Autowired
+	private UserExecuteAuthenticationService userExecuteAuthenticationService;
 
 	@PostMapping(value = "/executeAuthentication")
-	public ResponseEntity<ResourceDataEntity> executeAuthentication(@RequestBody UserEntity user) throws Exception {
+	public ResponseEntity<ResourceDataEntity> executeAuthentication(@RequestBody UserEntity user) throws BaseException {
 		this.userExecuteAuthenticationService.setEntity(user);
 		this.resourceData.setMap(this.userExecuteAuthenticationService.execute());
 

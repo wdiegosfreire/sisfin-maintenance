@@ -2,8 +2,10 @@ package br.com.dfdevforge.common.services;
 
 import java.util.Map;
 
+import br.com.dfdevforge.common.exceptions.BaseException;
+
 public interface CommonService {
-	default Map<String, Object> execute() throws Exception {
+	default Map<String, Object> execute() throws BaseException {
 		this.validateUserAccess();
 		this.executeBusinessRule();
 		this.configureUserActions();
@@ -18,9 +20,9 @@ public interface CommonService {
 
 	/**
 	 * Its purpose is to group all necessary methods to business rule execution.
-	 * @throws Exception 
+	 * @throws BaseException 
 	 */
-	public void executeBusinessRule() throws Exception;
+	public void executeBusinessRule() throws BaseException;
 
 	/**
 	 * Its purpose is to group all necessary methods to configure the visibility of user components.

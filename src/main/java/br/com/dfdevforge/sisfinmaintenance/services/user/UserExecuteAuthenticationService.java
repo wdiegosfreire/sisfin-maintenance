@@ -5,8 +5,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.common.services.CommonService;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
+import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
+import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @Service
@@ -21,7 +24,7 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	}
 
 	@Override
-	public void executeBusinessRule() throws Exception {
+	public void executeBusinessRule() throws BaseException {
 		this.findUserByEmail();
 		this.checkIfPasswordIsCorrect();
 	}
@@ -32,15 +35,15 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 		return super.returnBusinessData();
 	}
 
-	private void findUserByEmail() throws Exception {
+	private void findUserByEmail() throws BaseException {
 		this.userAuthenticated = this.userRepository.findByEmail(this.userParam.getEmail());
 
 		if (this.userAuthenticated == null)
-			throw new Exception("User not found!");
+			throw new UserNotFoundException();
 	}
 
-	private void checkIfPasswordIsCorrect() throws Exception {
-		if (!this.userAuthenticated.getPassword().contentEquals(this.userParam.getPassword()))
-			throw new Exception("Password incorrect!");
+	private void checkIfPasswordIsCorrect() throws BaseException {
+		if (!this.userAuthenticated.getPassword().equals(this.userParam.getPassword()))
+			throw new UserUnauthorizedException();
 	}
 }
