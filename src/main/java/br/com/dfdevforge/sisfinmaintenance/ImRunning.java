@@ -12,6 +12,6 @@ public class ImRunning {
 
 	@GetMapping
 	public String imRunning() {
-		return String.format("Sisfin Maintenance v%s is running", buildProperties.getVersion());
+		return String.format("Sisfin Maintenance v%s is running", this.buildProperties.getVersion());
 	}
 }
