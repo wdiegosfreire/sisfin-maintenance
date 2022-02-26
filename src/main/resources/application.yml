@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sisfin-maintenance
+  config:
+    import: optional:configserver:http://localhost:8888
+  profiles:
+    active: ${SISFIN_BACKEND_ENVIROMENT}

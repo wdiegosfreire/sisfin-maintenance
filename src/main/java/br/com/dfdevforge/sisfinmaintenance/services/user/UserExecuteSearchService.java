@@ -9,24 +9,22 @@ import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.common.services.CommonService;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
-import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @Service
-public class UserExecuteAuthenticationService extends UserBaseService implements CommonService {
+public class UserExecuteSearchService extends UserBaseService implements CommonService {
 	private UserEntity userAuthenticated;
 
 	@Autowired
 	private final UserRepository userRepository;
 
-	public UserExecuteAuthenticationService(UserRepository userRepository) {
+	public UserExecuteSearchService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	@Override
 	public void executeBusinessRule() throws BaseException {
-		this.findUserByEmail();
-		this.checkIfPasswordIsCorrect();
+		this.findUserByIdentity();
 	}
 
 	@Override
@@ -35,15 +33,10 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 		return super.returnBusinessData();
 	}
 
-	private void findUserByEmail() throws BaseException {
-		this.userAuthenticated = this.userRepository.findByEmail(this.userParam.getEmail()).orElse(null);
+	private void findUserByIdentity() throws BaseException {
+		this.userAuthenticated = this.userRepository.findByIdentity(this.userParam.getIdentity()).orElse(null);
 
 		if (this.userAuthenticated == null)
 			throw new UserNotFoundException();
-	}
-
-	private void checkIfPasswordIsCorrect() throws BaseException {
-		if (!this.userAuthenticated.getPassword().equals(this.userParam.getPassword()))
-			throw new UserUnauthorizedException();
 	}
 }
