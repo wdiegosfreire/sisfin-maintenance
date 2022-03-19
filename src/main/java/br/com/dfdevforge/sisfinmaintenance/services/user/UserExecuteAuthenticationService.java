@@ -27,6 +27,7 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	public void executeBusinessRule() throws BaseException {
 		this.findUserByEmail();
 		this.checkIfPasswordIsCorrect();
+		this.generateSessionToken();
 	}
 
 	@Override
@@ -45,5 +46,9 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	private void checkIfPasswordIsCorrect() throws BaseException {
 		if (!this.userAuthenticated.getPassword().equals(this.userParam.getPassword()))
 			throw new UserUnauthorizedException();
+	}
+
+	private void generateSessionToken() {
+		this.setSessionToken(this.userAuthenticated.getIdentity().toString());
 	}
 }

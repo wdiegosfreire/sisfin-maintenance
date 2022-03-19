@@ -19,7 +19,6 @@ public abstract class BaseService implements CommonService {
 	@Override
 	public void configureUserActions() {
 		// If needed, concrete classes must implement this method.
-		
 	}
 
 	@Override
@@ -35,5 +34,14 @@ public abstract class BaseService implements CommonService {
 	 */
 	protected void setArtifact(String artifactName, Object artifact) {
 		this.resultMap.put(artifactName, artifact);
+	}
+
+	/**
+	 * Its purpose is to put in the resulting map the session token generated at user login.
+	 * 
+	 * @param token
+	 */
+	protected void setSessionToken(String token) {
+		this.resultMap.put("token", token);
 	}
 }
