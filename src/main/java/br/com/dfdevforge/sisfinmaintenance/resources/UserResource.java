@@ -27,6 +27,7 @@ public class UserResource {
 	public ResponseEntity<ResourceDataEntity> executeAuthentication(@RequestBody UserEntity user) throws BaseException {
 		this.userExecuteAuthenticationService.setEntity(user);
 		this.resourceData.setMap(this.userExecuteAuthenticationService.execute());
+		this.resourceData.setToken(this.resourceData.getMap().get("token").toString());
 
 		return ResponseEntity.ok(this.resourceData);
 	}

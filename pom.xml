@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.dfdevforge</groupId>
 	<artifactId>sisfin-maintenance</artifactId>
-	<version>2022-01-25 2105</version>
+	<version>2022-03-19 1512</version>
 	<packaging>war</packaging>
 	<name>sisfin-maintenance</name>
 	<description>Spring Boot project for Sisfin application, module maintenance</description>
