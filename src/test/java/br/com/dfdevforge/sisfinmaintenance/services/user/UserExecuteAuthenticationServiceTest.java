@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import br.com.dfdevforge.common.exceptions.BaseException;
-import br.com.dfdevforge.sisfinmaintenance.TestConfig;
+import br.com.dfdevforge.sisfinmaintenance.configs.TestConfig;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
