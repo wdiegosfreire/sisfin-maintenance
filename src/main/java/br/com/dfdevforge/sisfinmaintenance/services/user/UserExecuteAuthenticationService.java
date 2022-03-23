@@ -16,12 +16,7 @@ import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 public class UserExecuteAuthenticationService extends UserBaseService implements CommonService {
 	private UserEntity userAuthenticated;
 
-	@Autowired
-	private final UserRepository userRepository;
-
-	public UserExecuteAuthenticationService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	@Autowired private UserRepository userRepository;
 
 	@Override
 	public void executeBusinessRule() throws BaseException {
@@ -39,7 +34,7 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	private void findUserByEmail() throws BaseException {
 		this.userAuthenticated = this.userRepository.findByEmail(this.userParam.getEmail()).orElse(null);
 
-		if (this.userAuthenticated == null)
+		if (this.userAuthenticated == null || this.userAuthenticated.getIdentity() == null || this.userAuthenticated.getEmail() == null)
 			throw new UserNotFoundException();
 	}
 
