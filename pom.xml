@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.dfdevforge</groupId>
 	<artifactId>sisfin-maintenance</artifactId>
-	<version>2022-03-24 1430</version>
+	<version>2022-04-01 1605</version>
 	<packaging>war</packaging>
 	<name>sisfin-maintenance</name>
 	<description>Spring Boot project for Sisfin application, module maintenance</description>
@@ -93,6 +93,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
 			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.19.0</version>
 		</dependency>
 	</dependencies>
 
