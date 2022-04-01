@@ -1,9 +1,13 @@
 package br.com.dfdevforge.sisfinmaintenance.services.user;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.common.services.CommonService;
@@ -44,6 +48,12 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	}
 
 	private void generateSessionToken() {
-		this.setSessionToken(this.userAuthenticated.getIdentity().toString());
+		this.setSessionToken(
+			JWT.create()
+			.withSubject(this.userAuthenticated.getEmail())
+			.withExpiresAt(new Date(System.currentTimeMillis() + 3000000))
+			.withClaim("userIdentity", this.userAuthenticated.getIdentity())
+			.sign(Algorithm.HMAC512(System.getenv("SISFIN_BACKEND_JWT_SECRET")))
+		);
 	}
 }
