@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dfdevforge.common.enums.DatePatternEnum;
 import br.com.dfdevforge.common.utils.Utils;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping(value = "/imrunning")
@@ -30,6 +31,7 @@ public class ImRunning {
 	private String springApplicationName;
 
 	@GetMapping
+	@Operation(description = "A simple resource used to check if application is running.")
 	public String imRunning() {
 		StringBuilder statusMessage = new StringBuilder();
 
