@@ -15,7 +15,6 @@ import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteAuthenticationService;
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteRegistrationService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping(value = "/user")
