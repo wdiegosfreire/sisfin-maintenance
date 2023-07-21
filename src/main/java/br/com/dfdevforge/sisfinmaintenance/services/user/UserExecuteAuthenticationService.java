@@ -11,6 +11,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.common.services.CommonService;
+import br.com.dfdevforge.common.utils.Utils;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
@@ -18,6 +19,7 @@ import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @Service
 public class UserExecuteAuthenticationService extends UserBaseService implements CommonService {
+	private String token;
 	private UserEntity userAuthenticated;
 
 	@Autowired private UserRepository userRepository;
@@ -27,7 +29,10 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 		this.findUserByEmail();
 		this.checkIfPasswordIsCorrect();
 		this.generateSessionToken();
+		this.encryptSessionToken();
 	}
+
+	
 
 	@Override
 	public Map<String, Object> returnBusinessData() {
@@ -48,12 +53,15 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 	}
 
 	private void generateSessionToken() {
-		this.setSessionToken(
-			JWT.create()
+		this.token = JWT
+			.create()
 			.withSubject(this.userAuthenticated.getEmail())
 			.withExpiresAt(new Date(System.currentTimeMillis() + 3000000))
 			.withClaim("userIdentity", this.userAuthenticated.getIdentity())
-			.sign(Algorithm.HMAC512(System.getenv("SISFIN_BACKEND_JWT_SECRET")))
-		);
+			.sign(Algorithm.HMAC512(System.getenv("SISFIN_BACKEND_JWT_SECRET")));
+	}
+
+	private void encryptSessionToken() {
+		this.setSessionToken(Utils.encrypt.toBase64(this.token));
 	}
 }

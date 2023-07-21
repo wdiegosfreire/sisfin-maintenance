@@ -11,7 +11,7 @@
 	<groupId>br.com.dfdevforge</groupId>
 	<artifactId>sisfin-maintenance</artifactId>
 	<version>2022-04-10 1850</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>sisfin-maintenance</name>
 	<description>Spring Boot project for Sisfin application, module maintenance</description>
 	<properties>
