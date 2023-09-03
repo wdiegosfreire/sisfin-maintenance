@@ -13,7 +13,9 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import br.com.dfdevforge.common.exceptions.BaseException;
+import br.com.dfdevforge.common.utils.Utils;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
+import br.com.dfdevforge.sisfinmaintenance.exceptions.SessionExpiredException;
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @RestController
@@ -26,10 +28,11 @@ public class UserFeignServer {
 		DecodedJWT decodedJwt = null ;
 
 		try {
+			token = Utils.decrypt.fromBase64(token);
 			decodedJwt = JWT.require(Algorithm.HMAC512(System.getenv("SISFIN_BACKEND_JWT_SECRET"))).build().verify(token);
 		}
 		catch (TokenExpiredException e) {
-			throw new BaseException("The Token has expired.");
+			throw new SessionExpiredException();
 		}
 		catch (JWTDecodeException e) {
 			throw new BaseException("The input is not a valid base 64 encoded string.");

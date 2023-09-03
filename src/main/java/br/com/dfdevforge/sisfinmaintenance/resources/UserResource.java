@@ -14,6 +14,7 @@ import br.com.dfdevforge.common.exceptions.BaseException;
 import br.com.dfdevforge.sisfinmaintenance.entities.UserEntity;
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteAuthenticationService;
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteRegistrationService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -24,6 +25,7 @@ public class UserResource {
 	@Autowired private UserExecuteAuthenticationService userExecuteAuthenticationService;
 
 	@PostMapping(value = "/executeAuthentication")
+	@Operation(description = "Performs user authentication.")
 	public ResponseEntity<ResourceDataEntity> executeAuthentication(@RequestBody UserEntity user) throws BaseException {
 		this.userExecuteAuthenticationService.setEntity(user);
 		this.resourceData.setMap(this.userExecuteAuthenticationService.execute());
@@ -33,6 +35,7 @@ public class UserResource {
 	}
 
 	@PostMapping(value = "/executeLogout")
+	@Operation(description = "Performs user logout.")
 	public ResponseEntity<ResourceDataEntity> executeLogout(@RequestBody UserEntity user, HttpServletRequest request) throws BaseException {
 		request.getSession().invalidate();
 		
@@ -40,6 +43,7 @@ public class UserResource {
 	}
 
 	@PostMapping(value = "/executeRegistration")
+	@Operation(description = "Performs user registration.")
 	public ResponseEntity<ResourceDataEntity> executeRegistration(@RequestBody UserEntity user) throws BaseException {
 		this.userExecuteRegistrationService.setEntity(user);
 		this.resourceData.setMap(this.userExecuteRegistrationService.execute());
