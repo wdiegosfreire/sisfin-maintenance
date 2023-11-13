@@ -21,7 +21,7 @@ public class CorsConfig extends WebSecurityConfigurerAdapter {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8180", "https://sisfin-frontend.herokuapp.com", "https://sisfin-transaction.herokuapp.com"));
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8180", "http://172.31.43.236"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
 		configuration.setAllowCredentials(false);
