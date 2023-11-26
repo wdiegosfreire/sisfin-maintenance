@@ -12,6 +12,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class CorsConfig extends WebSecurityConfigurerAdapter {
+	private static final String SEPARATOR = ", ";
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
@@ -19,11 +21,14 @@ public class CorsConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
+		final String[] CORS_ORIGINS = System.getenv("SISFIN_BACKEND_CORS_ORIGINS").split(SEPARATOR);
+		final String[] CORS_METHODS = System.getenv("SISFIN_BACKEND_CORS_METHODS").split(SEPARATOR);
+		final String[] CORS_HEADERS = System.getenv("SISFIN_BACKEND_CORS_HEADERS").split(SEPARATOR);
 
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8180", "http://172.31.43.236", "http://54.84.103.22"));
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-		configuration.setAllowedHeaders(Arrays.asList("*"));
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList(CORS_ORIGINS));
+		configuration.setAllowedMethods(Arrays.asList(CORS_METHODS));
+		configuration.setAllowedHeaders(Arrays.asList(CORS_HEADERS));
 		configuration.setAllowCredentials(false);
 
 		UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
