@@ -21,8 +21,14 @@ import io.swagger.v3.oas.annotations.Operation;
 public class UserResource {
 	private ResourceDataEntity resourceData = new ResourceDataEntity();
 
-	@Autowired private UserExecuteRegistrationService userExecuteRegistrationService;
-	@Autowired private UserExecuteAuthenticationService userExecuteAuthenticationService;
+	private final UserExecuteRegistrationService userExecuteRegistrationService;
+	private final UserExecuteAuthenticationService userExecuteAuthenticationService;
+
+	@Autowired
+	public UserResource(UserExecuteRegistrationService userExecuteRegistrationService, UserExecuteAuthenticationService userExecuteAuthenticationService) {
+		this.userExecuteRegistrationService = userExecuteRegistrationService;
+		this.userExecuteAuthenticationService = userExecuteAuthenticationService;
+	}
 
 	@PostMapping(value = "/executeAuthentication")
 	@Operation(description = "Performs user authentication.")
