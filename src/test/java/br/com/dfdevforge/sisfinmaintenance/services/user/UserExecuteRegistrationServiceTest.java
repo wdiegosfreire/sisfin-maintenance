@@ -25,7 +25,7 @@ class UserExecuteRegistrationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration correctly")
-	public void mustExecuteRegistrationCorrectly() throws BaseException {
+	void mustExecuteRegistrationCorrectly() throws BaseException {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		Mockito.when(userMock.getName()).thenReturn("Fake Name");

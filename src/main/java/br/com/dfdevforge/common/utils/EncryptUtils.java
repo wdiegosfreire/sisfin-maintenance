@@ -16,7 +16,7 @@ public class EncryptUtils {
 	protected  EncryptUtils() {}
 
 	private static final String ALGORITHM = "AES";
-	private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
+	private static final String TRANSFORMATION = "AES/GCM/NoPadding";
 
 	public String toAes(String encrypt) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
 		Cipher cipher = Cipher.getInstance(TRANSFORMATION);

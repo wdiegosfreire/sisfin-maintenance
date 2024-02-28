@@ -21,7 +21,12 @@ import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 @RestController
 @RequestMapping(value = "/userfeignserver")
 public class UserFeignServer {
-	@Autowired private UserRepository userRepository;
+	private final UserRepository userRepository;
+
+	@Autowired
+	public UserFeignServer(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@GetMapping(value = "/{token}")
 	public UserEntity validateToken(@PathVariable String token) throws BaseException {
