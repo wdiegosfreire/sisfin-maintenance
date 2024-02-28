@@ -60,7 +60,7 @@ public enum DatePatternEnum {
 		DatePatternEnum[] datePatternValues = DatePatternEnum.values();
 		DatePatternEnum datePatternReturn = null;
 
-		String valueCompare = value.replaceAll("[0-9]", "9");
+		String valueCompare = value.replaceAll("\\d", "9");
 
 		for (DatePatternEnum datePatternLoop : datePatternValues) {
 			String patternCompare = datePatternLoop.getPattern().replaceAll("[A-Za-z0-9]", "9");

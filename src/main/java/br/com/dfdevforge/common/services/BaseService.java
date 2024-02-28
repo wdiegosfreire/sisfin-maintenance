@@ -3,8 +3,6 @@ package br.com.dfdevforge.common.services;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.dfdevforge.common.exceptions.BaseException;
-
 public abstract class BaseService implements CommonService {
 	protected Map<String, Object> resultMap = new HashMap<>();
 
@@ -12,9 +10,6 @@ public abstract class BaseService implements CommonService {
 	public void validateUserAccess() {
 		
 	}
-
-	@Override
-	public abstract void executeBusinessRule() throws BaseException;
 
 	@Override
 	public void configureUserActions() {

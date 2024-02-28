@@ -21,7 +21,7 @@ import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteAuthenticati
 import br.com.dfdevforge.sisfinmaintenance.services.user.UserExecuteRegistrationService;
 
 @DisplayName("UserResourceTest")
-public class UserResourceTest extends TestConfig {
+class UserResourceTest extends TestConfig {
 	@MockBean private UserExecuteRegistrationService userExecuteRegistrationService;
 	@MockBean private UserExecuteAuthenticationService userExecuteAuthenticationService;
 
@@ -30,7 +30,7 @@ public class UserResourceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute authentication correctly")
-	public void mustExecuteAuthenticationCorrectly() throws Exception {
+	void mustExecuteAuthenticationCorrectly() throws Exception {
 		Mockito.when(this.userExecuteAuthenticationService.execute()).thenReturn(getMockMap());
 
 		this.mockMvc.perform(MockMvcRequestBuilders
@@ -42,7 +42,7 @@ public class UserResourceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute logout correctly")
-	public void mustExecuteLogoutCorrectly() throws Exception {
+	void mustExecuteLogoutCorrectly() throws Exception {
 		this.mockMvc.perform(MockMvcRequestBuilders
 			.post("/user/executeLogout")
 			.contentType(MediaType.APPLICATION_JSON)
@@ -52,7 +52,7 @@ public class UserResourceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration correctly")
-	public void mustExecuteRegistrationCorrectly() throws Exception {
+	void mustExecuteRegistrationCorrectly() throws Exception {
 		Mockito.when(this.userExecuteRegistrationService.execute()).thenReturn(getMockMap());
 
 		this.mockMvc.perform(MockMvcRequestBuilders

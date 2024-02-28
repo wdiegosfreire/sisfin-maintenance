@@ -53,7 +53,7 @@ public class UserExecuteRegistrationService extends UserBaseService implements C
 			throw new EmailAlreadyRegisteredException();
 	}
 
-	private void saveUserOnMaintenance() throws BaseException {
+	private void saveUserOnMaintenance() {
 		this.userRepository.save(this.userParam);
 	}
 }

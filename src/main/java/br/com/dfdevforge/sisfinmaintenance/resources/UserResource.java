@@ -36,7 +36,7 @@ public class UserResource {
 
 	@PostMapping(value = "/executeLogout")
 	@Operation(description = "Performs user logout.")
-	public ResponseEntity<ResourceDataEntity> executeLogout(@RequestBody UserEntity user, HttpServletRequest request) throws BaseException {
+	public ResponseEntity<ResourceDataEntity> executeLogout(@RequestBody UserEntity user, HttpServletRequest request) {
 		request.getSession().invalidate();
 		
 		return ResponseEntity.ok(this.resourceData);

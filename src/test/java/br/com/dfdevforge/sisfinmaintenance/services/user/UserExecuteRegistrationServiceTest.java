@@ -18,7 +18,7 @@ import br.com.dfdevforge.sisfinmaintenance.exceptions.RequiredFieldNotFoundExcep
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @DisplayName("UserExecuteRegistrationServiceTest")
-public class UserExecuteRegistrationServiceTest extends TestConfig {
+class UserExecuteRegistrationServiceTest extends TestConfig {
 	@Autowired private UserExecuteRegistrationService userExecuteRegistrationService;
 
 	@MockBean private UserRepository userRepository;
@@ -40,7 +40,7 @@ public class UserExecuteRegistrationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration and throw RequiredFieldNotFoundException with empty email")
-	public void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyEmail() {
+	void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyEmail() {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		Mockito.when(userMock.getName()).thenReturn("Fake Name");
@@ -59,7 +59,7 @@ public class UserExecuteRegistrationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration and throw RequiredFieldNotFoundException with empty password")
-	public void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyPassword() {
+	void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyPassword() {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		Mockito.when(userMock.getName()).thenReturn("Fake Name");
@@ -78,7 +78,7 @@ public class UserExecuteRegistrationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration and throw RequiredFieldNotFoundException with empty name")
-	public void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyName() {
+	void mustExecuteRegistrationAndThrowRequiredFieldNotFoundExceptionWithEmptyName() {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		Mockito.when(userMock.getPassword()).thenReturn("fake.password");
@@ -97,7 +97,7 @@ public class UserExecuteRegistrationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute registration and throw EmailAlreadyRegisteredException with empty name")
-	public void mustExecuteRegistrationAndThrowEmailAlreadyRegisteredException() {
+	void mustExecuteRegistrationAndThrowEmailAlreadyRegisteredException() {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		Mockito.when(userMock.getName()).thenReturn("Fake Name");
