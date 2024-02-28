@@ -22,8 +22,7 @@ import io.swagger.v3.oas.annotations.Operation;
 public class ImRunning {
 	private static final String BREAK = "<br>";
 
-	@Autowired
-	private BuildProperties buildProperties;
+	private final BuildProperties buildProperties;
 
 	@Value("${server.port}")
 	private String serverPort;
@@ -33,6 +32,12 @@ public class ImRunning {
 
 	@Value("${spring.application.name}")
 	private String springApplicationName;
+
+	
+	@Autowired
+	public ImRunning(BuildProperties buildProperties) {
+		this.buildProperties = buildProperties;
+	}
 
 	@GetMapping
 	@Operation(description = "A simple resource used to check if application is running.")

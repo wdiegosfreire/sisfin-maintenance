@@ -18,7 +18,7 @@ import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @DisplayName("UserExecuteAuthenticationServiceTest")
-public class UserExecuteAuthenticationServiceTest extends TestConfig {
+class UserExecuteAuthenticationServiceTest extends TestConfig {
 	@Autowired private UserExecuteAuthenticationService userExecuteAuthenticationService;
 
 	@MockBean private UserRepository userRepository;
@@ -38,7 +38,7 @@ public class UserExecuteAuthenticationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute authentication and throw UserNotFoundException")
-	public void mustExecuteAuthenticationAndThrowUserNotFoundException() throws BaseException {
+	void mustExecuteAuthenticationAndThrowUserNotFoundException() throws BaseException {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getEmail()).thenReturn("fake.email@email.com");
 		Mockito.when(userMock.getPassword()).thenReturn("fake.password");
@@ -55,7 +55,7 @@ public class UserExecuteAuthenticationServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute authentication and throw UserUnauthorizedException")
-	public void mustExecuteAuthenticationAndThrowUserUnauthorizedException() throws BaseException {
+	void mustExecuteAuthenticationAndThrowUserUnauthorizedException() throws BaseException {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getEmail()).thenReturn("fake.email@email.com");
 		Mockito.when(userMock.getPassword()).thenReturn("fake.password");

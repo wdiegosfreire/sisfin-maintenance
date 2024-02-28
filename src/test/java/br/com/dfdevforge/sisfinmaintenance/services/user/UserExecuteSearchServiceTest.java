@@ -17,14 +17,14 @@ import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
 import br.com.dfdevforge.sisfinmaintenance.repositories.UserRepository;
 
 @DisplayName("UserExecuteSearchServiceTest")
-public class UserExecuteSearchServiceTest extends TestConfig {
+class UserExecuteSearchServiceTest extends TestConfig {
 	@Autowired private UserExecuteSearchService userExecuteSearchService;
 
 	@MockBean private UserRepository userRepository;
 
 	@Test
 	@DisplayName("Must execute search correctly")
-	public void mustExecuteSearchCorrectly() throws BaseException {
+	void mustExecuteSearchCorrectly() throws BaseException {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 
@@ -36,7 +36,7 @@ public class UserExecuteSearchServiceTest extends TestConfig {
 
 	@Test
 	@DisplayName("Must execute search and throw UserNotFoundException")
-	public void mustExecuteSearchAndThrowUserNotFoundException() throws BaseException {
+	void mustExecuteSearchAndThrowUserNotFoundException() throws BaseException {
 		UserEntity userMock = Mockito.mock(UserEntity.class);
 		Mockito.when(userMock.getIdentity()).thenReturn(1L);
 		
