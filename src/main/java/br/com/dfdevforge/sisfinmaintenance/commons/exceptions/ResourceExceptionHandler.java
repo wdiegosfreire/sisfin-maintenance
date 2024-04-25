@@ -13,7 +13,7 @@ import br.com.dfdevforge.sisfinmaintenance.exceptions.UserNotFoundException;
 import br.com.dfdevforge.sisfinmaintenance.exceptions.UserUnauthorizedException;
 
 @ControllerAdvice
-public class ResourceHandlerException {
+public class ResourceExceptionHandler {
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<String> httpNotFoundExceptionHandler(HttpStatusNotFound exception, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());

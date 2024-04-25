@@ -32,8 +32,6 @@ public class UserExecuteAuthenticationService extends UserBaseService implements
 		this.encryptSessionToken();
 	}
 
-	
-
 	@Override
 	public Map<String, Object> returnBusinessData() {
 		this.setArtifact("userAuthenticated", this.userAuthenticated);
