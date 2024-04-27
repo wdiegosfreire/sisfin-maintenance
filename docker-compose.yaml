@@ -4,7 +4,7 @@ services:
   sisfin-maintenance:
     build: ../sisfin-maintenance/
     image: img_sisfin_maintenance_dev:0.1
-    container_name: con_sisfin_maintenance_dev  
+    container_name: con_sisfin_maintenance_dev
     restart: always
     env_file:
       - ../sisfin-config/sisfin-backend.env
