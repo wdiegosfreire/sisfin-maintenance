@@ -46,8 +46,6 @@ public class UserFeignServer {
 			throw new BaseException("Exception not recognized.");
 		}
 
-		this.findUserByIdentity(Long.parseLong(decodedJwt.getClaim("userIdentity").toString()));
-		
 		return this.findUserByIdentity(Long.parseLong(decodedJwt.getClaim("userIdentity").toString()));
 	}
 
