@@ -3,6 +3,8 @@ package br.com.dfdevforge.sisfinmaintenance.resources;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +39,15 @@ public class UserResource {
 		this.resourceData.setMap(this.userExecuteAuthenticationService.execute());
 		this.resourceData.setToken(this.resourceData.getMap().get("token").toString());
 
-		return ResponseEntity.ok(this.resourceData);
+		ResponseCookie cookie = ResponseCookie.from("access_token", this.resourceData.getToken())
+			.httpOnly(true)
+			.secure(true) // true em produção (HTTPS)
+			.path("/")
+			.sameSite("Strict")
+			.maxAge(60 * 60) // 1 hora
+			.build();
+
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(this.resourceData);
 	}
 
 	@PostMapping(value = "/executeLogout")
